@@ -1,0 +1,191 @@
+Metadata-Version: 2.4
+Name: mini-dns-api
+Version: 0.1.0
+Summary: A simple DNS record management API
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.68.0
+Requires-Dist: sqlmodel>=0.0.8
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pydantic-settings>=2.0.0
+Requires-Dist: uvicorn[standard]>=0.15.0
+Requires-Dist: python-dotenv>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: httpx>=0.24.0; extra == "dev"
+Requires-Dist: ruff>=0.0.280; extra == "dev"
+Requires-Dist: black>=23.3.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Requires-Dist: codecov>=2.1.0; extra == "dev"
+Requires-Dist: pip-tools>=7.0.0; extra == "dev"
+Dynamic: license-file
+
+# Mini DNS API
+
+A simple DNS record management API built with FastAPI and SQLModel.
+
+## Features
+
+- RESTful API for managing DNS records
+- SQLite database with SQLModel ORM
+- Async support with FastAPI
+- Input validation with Pydantic
+- Type hints and static type checking with mypy
+- Code formatting with Black and Ruff
+- Pre-commit hooks for code quality
+
+## Development Setup
+
+### Prerequisites
+
+- Python 3.13 or higher
+- pip (Python package manager)
+- Git
+
+### Environment Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone git@github.com:rostysIav/mini-dns-api.git
+   cd mini-dns-api
+   ```
+
+2. **Set up virtual environment**:
+   ```bash
+   # On Windows
+   python -m venv .venv
+   .venv\Scripts\activate
+   
+   # On macOS/Linux
+   # python3 -m venv .venv
+   # source .venv/bin/activate
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   # Install project in development mode with all dependencies
+   pip install -e ".[dev]"
+   ```
+
+   Alternatively, install from requirements files:
+   ```bash
+   # Install production dependencies
+   pip install -r requirements.txt
+   
+   # Install development dependencies
+   pip install -r requirements-dev.txt
+   ```
+
+4. **Set up pre-commit hooks**:
+   ```bash
+   pre-commit install
+   ```
+
+### Running the Application
+
+1. **Start the development server**:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+   - API documentation will be available at: http://localhost:8000/docs
+   - Alternative documentation (ReDoc): http://localhost:8000/redoc
+
+2. **Run tests**:
+   ```bash
+   # Run all tests
+   pytest
+   
+   # Run tests with coverage report
+   pytest --cov=app --cov-report=term-missing
+   
+   # Run a specific test file
+   pytest tests/test_module.py -v
+   ```
+
+3. **Code Quality Checks**:
+   ```bash
+   # Format code with Black
+   black .
+   
+   # Lint code with Ruff
+   ruff check .
+   
+   # Type checking with mypy
+   mypy .
+   ```
+
+### Managing Dependencies
+
+- To add a new dependency:
+  1. Add it to `requirements.in`
+  2. Run `pip-compile requirements.in` to update `requirements.txt`
+  3. Install with `pip install -r requirements.txt`
+
+- To update all dependencies:
+  ```bash
+  pip-compile --upgrade
+  pip install -r requirements.txt
+  ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Database
+SQLALCHEMY_DATABASE_URI=sqlite:///./sql_app.db
+
+# Application
+PROJECT_NAME="Mini DNS API"
+API_V1_STR=/api/v1
+```
+
+## Project Structure
+
+```
+mini-dns-api/
+├── app/
+│   ├── api/           # FastAPI routers
+│   ├── models/        # SQLModel entities
+│   ├── schemas/       # Pydantic models
+│   ├── services/      # Business logic
+│   ├── crud/          # Database operations
+│   └── core/          # Application configuration
+├── tests/             # Test files
+├── .pre-commit-config.yaml
+├── pyproject.toml
+└── README.md
+```
+
+## Running Tests
+
+```bash
+pytest
+```
+
+## Code Quality
+
+- Format code with Black:
+  ```bash
+  black .
+  ```
+
+- Lint code with Ruff:
+  ```bash
+  ruff check .
+  ```
+
+- Type checking with mypy:
+  ```bash
+  mypy .
+  ```
+
+## License
+
+MIT
