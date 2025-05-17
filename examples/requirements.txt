@@ -1,0 +1,3 @@
+# Required tools for running the example scripts
+jq
+curl

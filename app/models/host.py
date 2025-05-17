@@ -19,6 +19,12 @@ class HostBase(SQLModel):
         description="Fully qualified domain name (e.g., example.com)",
         max_length=253,
     )
+    description: Optional[str] = Field(
+        default=None,
+        nullable=True,
+        description="Optional description of the host",
+        max_length=255,
+    )
 
 class Host(HostBase, BaseModel, table=True):
     """Database model for DNS Host."""

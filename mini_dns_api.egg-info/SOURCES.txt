@@ -8,7 +8,10 @@ app/api/dns.py
 app/api/v1/__init__.py
 app/core/__init__.py
 app/core/database.py
+app/core/resolver.py
 app/core/settings.py
+app/core/tasks.py
+app/core/validators.py
 app/crud/__init__.py
 app/models/__init__.py
 app/models/base.py
@@ -21,3 +24,6 @@ mini_dns_api.egg-info/SOURCES.txt
 mini_dns_api.egg-info/dependency_links.txt
 mini_dns_api.egg-info/requires.txt
 mini_dns_api.egg-info/top_level.txt
+tests/test_hosts.py
+tests/test_records.py
+tests/test_resolution.py

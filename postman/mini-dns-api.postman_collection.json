@@ -1,0 +1,170 @@
+{
+  "info": {
+    "name": "Mini DNS API",
+    "description": "A collection of requests for the Mini DNS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hosts",
+      "description": "Operations related to DNS hosts",
+      "item": [
+        {
+          "name": "List All Hosts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/hosts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hosts"]
+            },
+            "description": "Retrieve a list of all DNS hosts"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Host",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"hostname\": \"example.com\",\n    \"description\": \"Example domain\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/hosts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hosts"]
+            },
+            "description": "Create a new DNS host"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Host by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/hosts/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hosts", "1"]
+            },
+            "description": "Retrieve details of a specific host by ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Records",
+      "description": "Operations related to DNS records",
+      "item": [
+        {
+          "name": "List All Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/records",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "records"]
+            },
+            "description": "Retrieve a list of all DNS records"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"type\": \"A\",\n    \"value\": \"192.168.1.1\",\n    \"ttl\": 300,\n    \"host_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/records",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "records"]
+            },
+            "description": "Create a new DNS record"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Record by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/records/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "records", "1"]
+            },
+            "description": "Retrieve details of a specific record by ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DNS Resolution",
+      "description": "DNS resolution endpoints",
+      "item": [
+        {
+          "name": "Resolve Hostname",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/resolve/example.com?type=A",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "resolve", "example.com"],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "A"
+                }
+              ]
+            },
+            "description": "Resolve a hostname to its DNS records"
+          },
+          "response": []
+        },
+        {
+          "name": "Get CNAME Chain",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/cname-chain/example.com",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "cname-chain", "example.com"]
+            },
+            "description": "Get the full CNAME chain for a hostname"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ]
+}
